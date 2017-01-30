@@ -1,0 +1,20 @@
+{
+  "require": {
+    "silex/silex": "~1.3",
+    "symfony/twig-bridge": "*",
+    "twig/twig": "*",
+    "igorw/config-service-provider": "^1.2",
+    "marcojanssen/silex-routing-service-provider": "^1.5",
+    "doctrine/dbal": "^2.5",
+    "sorien/silex-pimple-dumper": "^2.0",
+    "symfony/translation": "^3.1",
+    "symfony/config": "^3.1",
+    "symfony/yaml": "^3.1"
+  },
+
+  "autoload": {
+    "psr-0": {
+      "Lsystems" : "app/src/"
+    }
+  }
+}

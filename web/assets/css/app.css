@@ -1,0 +1,35 @@
+nav ul a{
+	color:#795548  !important;
+}
+.main-nav{
+	margin: 0px;
+}
+
+.logo-div{
+	border-right:1px solid #bf360c;
+	padding: 6px;
+}
+
+.logo-img{
+	max-height: 100%;
+	max-width:100%;
+	padding-top: 5px;
+}
+
+nav i{
+	height:auto;
+}
+
+.thumb-pic{
+	max-height: 300px;
+	min-height: 300px;
+}
+
+.generation-span{
+	position: absolute;
+	right: 0;
+	padding: 10px;
+	font-size: 25px;
+	border-bottom: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+}

@@ -1,0 +1,16 @@
+title: L-systems | online generator
+l-system: L-system
+turtle: Turtle
+svg: SVG
+create-system: Create
+axiom: Axiom
+key: Key
+value: Value
+moveForward: Move Forward
+moveRight: Move Right
+moveLeft: Move Left
+param: Param
+addRule: Add rule
+help: Help
+about: About project
+examples: Examples

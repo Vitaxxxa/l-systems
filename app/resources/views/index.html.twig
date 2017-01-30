@@ -1,0 +1,259 @@
+<!doctype html>
+
+<html lang="en">
+  	<head>
+      	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <link type="text/css" rel="stylesheet" href="/assets/css/materialize.min.css" media="screen,projection"/>
+	    <link type="text/css" rel="stylesheet" href="/assets/css/app.css">
+	    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <title>{{'title'|trans}}</title>
+ 	</head>
+  	<body class="red lighten-5">
+	  	<nav class="red accent-1 row main-nav">
+	    	<div class="nav-wrapper col s3 logo-div">
+		      	<a href="#">
+		      		<img src="../images/logo.png" class="logo-img">
+		      	</a>
+	    	</div>
+	    	<div class="nav-wrapper col s9 ">
+	    		<ul class="nav-mobile" >
+		    		<li>
+		    			<a href="#examples-modal">
+		    				<i class="fa fa-lightbulb-o" aria-hidden="true"></i> 
+		    				<span class="hide-on-small-only">{{'examples'|trans}}</span>
+		    			</a>
+		    		</li>
+		        	<li>
+		        		<a href="#help-modal">
+		        			<i class="fa fa-question-circle" aria-hidden="true"></i>
+		        			<span class="hide-on-small-only">{{'help'|trans}}</span>
+		        		</a>
+		        	</li>
+		        	<li>
+		        		<a href="#about-modal">
+		        			<i class="fa fa-info-circle" aria-hidden="true"></i>
+		        			<span class="hide-on-small-only">{{'about'|trans}}</span>
+		        		</a>
+		        	</li>
+		        	<li>
+		        		<a href="https://github.com/Vitaxxxa/l-systems" target="blank">
+		        			<i class="fa fa-github" aria-hidden="true"></i> 
+		        			<span class="hide-on-small-only">GitHub</span>
+		        		</a>
+		        	</li>
+		      	</ul>
+		      	<ul id="nav-mobile" class="right hide-on-med-and-down">
+	      			<li><a href="./../en/">EN</a></li>
+	        		<li><a href="./../ru/">RU</a></li>
+	        		<li><a href="./../ua/">UA</a></li>
+        		</ul>
+	    	</div>
+	  	</nav>
+
+	  	<div class="row">
+		  	<div class="col s3" style="padding: 0px; margin: 0px;">
+		    	<div class="row">
+		    		<a class="waves-effect waves-light btn deep-orange darken-4 btn-large" style="width:100%" id="createSystem">{{'create-system'|trans}}</a>
+		      		<ul class="collapsible" data-collapsible="accordion">
+		        		<li>
+		          			<div class="collapsible-header grey lighten-3 active">
+		          				<i class="material-icons">filter_drama</i>{{'l-system'|trans}}
+		          			</div>
+		          			<div class="collapsible-body grey lighten-5">
+			                	<form>
+			                  		<div class="row">
+			                    		<div class="input-field col s12">
+			                      			<p class="range-field" style="padding: 0px;">
+			                        			<input type="range" id="num-generations" min="0" max="15" value="12" />
+			                      			</p>
+				                    	</div>
+				                  	</div>
+				                  	<div class="row">
+				                    	<div class="input-field col s12">
+				                      		<input id="axiom" type="text" class="validate" value="F+X">
+				                      		<label for="axiom">{{'axiom'|trans}}</label>
+				                    	</div>
+				                  	</div>
+				                  	<div class="row">
+				                    	<div class="rules-input">
+				                      		<div class="rule-input">
+				                        		<div class="input-field col s3">
+				                          			<input type="text" class="validate key" value="F">
+				                          			<label for="key">{{'key'|trans}}</label>
+				                        		</div>
+				                        		<div class="input-field col s9">
+				                          			<input type="text" class="validate value" value="X++F+F+X">
+				                          			<label for="value">{{'value'|trans}}</label>
+				                        		</div>
+				                      		</div>
+				                    	</div>
+				                    	<div class="input-field col s12">
+				                      		<a class="waves-effect waves-light btn red" style="width:100%" id="add-new-rule">{{'addRule'|trans}}</a>
+				                    	</div>
+				                  	</div>
+			                	</form>
+		          			</div>
+		        		</li>
+			            <li>
+			              	<div class="collapsible-header grey lighten-3">
+			              		<i class="material-icons">place</i>{{'turtle'|trans}}
+			              	</div>
+			              	<div class="collapsible-body grey lighten-5">
+			                	<form>
+			                  		<div class="row bind-inputs">
+			                    		<div class="input-field col s2">
+			                      			<input id="bind-key" type="text" class="validate" value="F">
+			                      			<label for="bind-key">{{'key'|trans}}</label>
+			                    		</div>
+			                    		<div class="input-field col s6">
+			                        		<select id="do-it">
+					                          	<option value="" disabled>---</option>
+					                          	<option value="moveForward" selected>{{'moveForward'|trans}}</option>
+					                          	<option value="moveRight">{{'moveRight'|trans}}</option>
+					                          	<option value="moveLeft">{{'moveLeft'|trans}}</option>
+					                          	<option value="savePoint">{{'savePoint'|trans}}</option>
+			                          			<option value="restorePoint">{{'restorePoint'|trans}}</option>
+			                        		</select>
+			                    		</div>
+			                    		<div class="input-field col s4">
+			                      			<input id="param" type="text" class="validate" value="15">
+			                      			<label for="param">{{'param'|trans}}</label>
+			                    		</div>
+			                  		</div>
+			                  		<div class="row bind-inputs">
+			                    		<div class="input-field col s2">
+			                      			<input id="bind-key" type="text" class="validate" value="+">
+			                      			<label for="bind-key">{{'key'|trans}}</label>
+			                    		</div>
+			                    		<div class="input-field col s6">
+			                        		<select id="do-it">
+			                          			<option value="" disabled>---</option>
+			                          			<option value="moveForward" >{{'moveForward'|trans}}</option>
+			                          			<option value="moveRight" selected>{{'moveRight'|trans}}</option>
+			                          			<option value="moveLeft">{{'moveLeft'|trans}}</option>
+			                          			<option value="savePoint">{{'savePoint'|trans}}</option>
+			                          			<option value="restorePoint">{{'restorePoint'|trans}}</option>
+			                        		</select>
+			                    		</div>
+			                    		<div class="input-field col s4">
+			                      			<input id="param" type="text" class="validate" value="90">
+			                      			<label for="param">{{'param'|trans}}</label>
+			                    		</div>
+			                  		</div>
+			                 		<div class="row bind-inputs">
+			                    		<div class="input-field col s2">
+			                      			<input id="bind-key" type="text" class="validate" value="-">
+			                      			<label for="bind-key">{{'key'|trans}}</label>
+			                    		</div>
+			                    		<div class="input-field col s6">
+			                        		<select id="do-it">
+			                          			<option value="" disabled>---</option>
+			                          			<option value="moveForward" >{{'moveForward'|trans}}</option>
+			                          			<option value="moveRight" >{{'moveRight'|trans}}</option>
+			                          			<option value="moveLeft" selected>{{'moveLeft'|trans}}</option>
+			                          			<option value="savePoint">{{'savePoint'|trans}}</option>
+			                          			<option value="restorePoint">{{'restorePoint'|trans}}</option>
+			                        		</select>
+			                    		</div>
+			                    		<div class="input-field col s4">
+			                      			<input id="param" type="text" class="validate" value="90">
+			                      			<label for="param">{{'param'|trans}}</label>
+			                    		</div>
+			                    		<div class="input-field col s12">
+				                      		<a class="waves-effect waves-light btn red" style="width:100%" id="add-new-bind">{{'addRule'|trans}}</a>
+				                    	</div>
+			                  		</div>
+			                	</form>
+			             	 </div>
+			            </li>
+			            <li>
+			              	<div class="collapsible-header grey lighten-3">
+			              		<i class="material-icons">whatshot</i>{{'svg'|trans}}
+			              	</div>
+			              	<div class="collapsible-body grey lighten-5">
+			              		<p>Lorem ipsum dolor sit amet.</p>
+			              	</div>
+			            </li>
+		      		</ul>
+		    	</div>
+	    	</div>
+		    <div class="col s9" style="padding: 0px; margin: 0px;">
+		        <div class="row">
+		          	<div class="col s12 content">
+		            	<div class="white  card-panel center-align" id="final-system">&nbsp;</div>
+		          	</div>
+		        </div>
+		    </div>
+   		</div>
+
+   		<div class="row"><div class="col s12" id="thumbs"> </div></div>
+
+   		<footer class="page-footer" style="margin-top:0px;padding-top: 0px;">
+          	<div class="footer-copyright">
+            	<div class="container center">
+            		Keep calm and do since
+            		© 2017 vitaxxxa@ex.ua
+            	</div>
+          	</div>
+        </footer>
+
+    	<div class="preloader-wrapper big active hide">
+      		<div class="spinner-layer spinner-blue-only">
+       		 	<div class="circle-clipper left">
+          			<div class="circle"></div>
+        		</div>
+        		<div class="gap-patch">
+          			<div class="circle"></div>
+        		</div>
+        		<div class="circle-clipper right">
+          			<div class="circle"></div>
+        		</div>
+      		</div>
+    	</div>
+
+    	<div id="help-modal" class="modal">
+    		<div class="modal-content">
+      			<h4>{{'help'|trans}}</h4>
+      			<p>{{'helpText'|trans}}</p>
+    		</div>
+    		<div class="modal-footer">
+      			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+    		</div>
+  		</div>
+  		<div id="about-modal" class="modal">
+    		<div class="modal-content">
+      			<h4>{{'about'|trans}}</h4>
+      			<p>{{'aboutText'|trans}}</p>
+    		</div>
+    		<div class="modal-footer">
+      			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+    		</div>
+  		</div>
+  		<div id="examples-modal" class="modal">
+    		<div class="modal-content">
+      			<h4>{{'examples'|trans}}</h4>
+      			<p>{{'examplesText'|trans}}</p>
+    		</div>
+    		<div class="modal-footer">
+      			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+    		</div>
+  		</div>
+
+  		<div id="tmpl-card" class="col s4" style="display: none;">
+  			<div class="card pink white">
+  				<span class="generation-span"></span>
+            	<div class="card-content white-text pic">
+            	</div>
+            	<div class="card-action info grey lighten-3">
+              		<a href="#" class='save-pic'>SAVE</a>
+            	</div>
+          	</div>
+  		</div>
+
+  		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  		<script type="text/javascript" src="/assets/js/materialize.min.js"></script>
+  		<script type="text/javascript" src="/assets/js/app.js"></script>
+  	</body>
+</html>
+
