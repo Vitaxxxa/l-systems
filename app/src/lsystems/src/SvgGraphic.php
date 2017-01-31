@@ -3,55 +3,93 @@ namespace Lsystems\Src;
 
 class SvgGraphic implements GraphicInterface
 {
-    protected $size = [];
-    protected $line = [];
-    protected $id   = '';
-
-    function __construct($x=400, $y=400)
+    protected $width;
+    protected $height;
+    protected $line;
+    protected $image;
+    protected $svgId;
+    function __construct()
     {
-        $this->size['x'] = $x;
-        $this->size['y'] = $y;
+        $this->svgId = "svg-image";
+        $this->width = "100%";
+        $this->height = "100%";
+        $this->line['color'] = 'black';
+        $this->line['width'] = 1;
+    }
+
+    public function setSvgId($id)
+    {
+        $this->svgId = $id;
     }
 
     public function setBoardSize($x=400,$y=400)
     {
-        if ($x > 0 AND $y > 0){
-            $this->size['x'] = $x;
-            $this->size['y'] = $y;
+        if ($x > 0 || $y > 0){
+            $this->width = $x;
+            $this->height = $y;
         }
     }
 
-    public function drawLine($x1,$y1,$x2,$y2)
+    public function setLineColor($color)
     {
-        $line = $this->line;
-        $string = "<line x1='".$x1."' y1='".$y1."' x2='".$x2."' y2='".$y2."' style='stroke:#000000; stroke-width:1px;' />";
-        return $string;
+        $this->line['color'] = $color;
     }
 
-    public function svgOpenTag($data)
+    public function setLineWidth($width)
     {
-        $svgOpenTag = "<svg version='1.1' xmlns='http://www.w3.org/2000/svg'>";
+        $this->line['width'] = $width;
+    }
 
-        if (isset($data)){
-            $id     = $data['id'];
-            $width  = $data['width'];
-            $height = $data['height'];
+    public function getImage()
+    {
+        $image  = $this->svgOpenTag();
+        $image .= $this->image;
+        $image .= $this->svgCloseTag();
 
-            if (empty($id))     $id     = 'svg';
-            if (empty($width))  $width  = $this->size['x'];
-            if (empty($height)) $height = $this->size['y'];
+        $this->clearImage();
 
-            $svgOpenTag  = "<svg";
-            $svgOpenTag .= " id='$id'";
-            $svgOpenTag .= " width='$width'";
-            $svgOpenTag .= " height='$height'";
-            $svgOpenTag .= " version='1.1' xmlns='http://www.w3.org/2000/svg'>";
-        }
+        return $image;
+    }
+
+    protected function svgOpenTag()
+    {
+        $id     = $this->svgId;
+        $width  = $this->width;
+        $height = $this->width;
+
+        $svgOpenTag  = "<svg";
+        $svgOpenTag .= " id='$id'";
+        $svgOpenTag .= " width='$width'";
+        $svgOpenTag .= " height='$height'";
+        $svgOpenTag .= " version='1.1' xmlns='http://www.w3.org/2000/svg'>";
     
         return $svgOpenTag;
     }
 
-    public function svgCloseTag(){
+    protected function svgCloseTag()
+    {
         return "</svg>";
+    }
+
+    public function drawLine($x1,$y1,$x2,$y2)
+    {
+        $lineColor = $this->line['color'];
+        $lineWidth = $this->line['width'];
+
+        $line  = "<line ";
+        $line .= " x1='$x1'";
+        $line .= " y1='$y1'";
+        $line .= " x2='$x2'";
+        $line .= " y2='$y2'";
+        $line .= " style='stroke:$lineColor; stroke-width:$lineWidthpx;'";
+        $line .= " />";
+
+
+        $this->image .= $line;
+    }
+
+    public function clearImage()
+    {
+        $this->image = "";
     }
 }

@@ -112,4 +112,9 @@ class Turtle
         $this->currentAngle = $array['angel'];
     }
 
+    public function getImage()
+    {
+        return $this->board->getImage();
+    }
+
 }

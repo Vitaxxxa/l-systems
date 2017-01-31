@@ -46,54 +46,48 @@ class Lsystem
         return $turtle->getGraphic();
     }
 
-    public function createImage($data){
-        $trtl    = $this->turtle;
+    public function createImage(){
+        $turtle  = $this->turtle;
         $string  = $this->generatePath();
         $binds   = $this->binds;
-        $graphic = $this->getGraphic();
-
-        $image = $graphic->svgOpenTag($data); 
 
         for ($i=0; $i < strlen($string); $i++){
             foreach ($binds as $key => $bind){
-
                 if ($string[$i] == $key){
                     if ($bind['do'] == 'moveForward')
-                        $image .= $trtl->moveForward($bind['param']);
+                        $turtle->moveForward($bind['param']);
                     if ($bind['do'] == 'moveRight')
-                        $image .= $trtl->moveRight($bind['param']);
+                        $turtle->moveRight($bind['param']);
                     if ($bind['do'] == 'moveLeft')
-                        $image .= $trtl->moveLeft($bind['param']);
+                        $turtle->moveLeft($bind['param']);
                     if ($bind['do'] == 'savePoint')
-                        $image .= $trtl->savePoint();
+                        $turtle->savePoint();
                     if ($bind['do'] == 'restorePoint')
-                        $image .= $trtl->restorePoint();
+                        $turtle->restorePoint();
                 }
             }
         }
-        $this->image = $image.$graphic->svgCloseTag();;
+
+        $this->image = $turtle->getImage();
     }
 
     public function createThumbs($g)
     {
         if ($g > 1){
-            $array = [];
+            $result = [];
 
             for ($i=0; $i<$g; $i++){
                 $picId = 'svg-img-'.$i;
                 $this->setStep($i);
-                $this->createImage(array(
-                    'id'=>$picId,
-                    'width'=>'100%',
-                    'height'=>'300px'
-                    )
-                );
+                $this->turtle->getGraphic()->setSvgId($picId);
+                $this->createImage();
+
                 $image = $this->image;
-                $array[$i]['id']    = $picId;
-                $array[$i]['image'] = $image;
+                $result[$i]['id']    = $picId;
+                $result[$i]['image'] = $image;
             }
 
-            return $array;
+            return $result;
         }
     }
 

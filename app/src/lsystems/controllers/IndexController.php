@@ -23,14 +23,17 @@ class IndexController
 
     public function createAction(Request $request, \Application $app)
     {
-        $svg     = new SvgGraphic();
-        $trtl    = new Turtle($svg);
-        $lsystem = new Lsystem($trtl);
-
         $axiom       = $_POST['axiom'];
         $generations = $_POST['generations'];
         $rules       = $_POST['rule'];
         $binds       = $_POST['binds'];
+
+        $svg     = new SvgGraphic();
+        $picId = 'svg-img-'.$generations;
+        $svg->setSvgId($picId);
+        
+        $trtl    = new Turtle($svg);
+        $lsystem = new Lsystem($trtl);
 
         $lsystem->setAxiom($axiom);
         $lsystem->setStep($generations);
@@ -39,14 +42,7 @@ class IndexController
         $lsystem->setBind(']','restorePoint','');
         $lsystem->setBinds($binds);
 
-        $picId = 'svg-img-'.$generations;
-
-        $lsystem->createImage(array(
-            'id'=>$picId,
-            'width' => '100%',
-            'height'=> '100%'
-            )
-        );
+        $lsystem->createImage($picId);
         
         $pic = $lsystem->getImage();
 
