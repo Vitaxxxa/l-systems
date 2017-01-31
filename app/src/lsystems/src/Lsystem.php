@@ -46,12 +46,14 @@ class Lsystem
         return $turtle->getGraphic();
     }
 
-    public function createImage($picId){
+    public function createImage($data){
         $trtl    = $this->turtle;
         $string  = $this->generatePath();
         $binds   = $this->binds;
         $graphic = $this->getGraphic();
-        $image = $graphic->svgOpenTag($picId);
+
+        $image = $graphic->svgOpenTag($data); 
+
         for ($i=0; $i < strlen($string); $i++){
             foreach ($binds as $key => $bind){
 
@@ -80,8 +82,12 @@ class Lsystem
             for ($i=0; $i<$g; $i++){
                 $picId = 'svg-img-'.$i;
                 $this->setStep($i);
-                $this->getGraphic()->setBoardSize('100%', '300px');
-                $this->createImage($picId);
+                $this->createImage(array(
+                    'id'=>$picId,
+                    'width'=>'100%',
+                    'height'=>'300px'
+                    )
+                );
                 $image = $this->image;
                 $array[$i]['id']    = $picId;
                 $array[$i]['image'] = $image;

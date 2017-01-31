@@ -32,7 +32,6 @@ class IndexController
         $rules       = $_POST['rule'];
         $binds       = $_POST['binds'];
 
-        $svg->setLineColor('rgb(0,0,0)');
         $lsystem->setAxiom($axiom);
         $lsystem->setStep($generations);
         $lsystem->addRules($rules);
@@ -40,10 +39,16 @@ class IndexController
         $lsystem->setBind(']','restorePoint','');
         $lsystem->setBinds($binds);
 
-        $svg->setBoardSize('100%','100%');
         $picId = 'svg-img-'.$generations;
-        $lsystem->createImage($picId);
-        $pic = $lsystem->getImage($picId);
+
+        $lsystem->createImage(array(
+            'id'=>$picId,
+            'width' => '100%',
+            'height'=> '100%'
+            )
+        );
+        
+        $pic = $lsystem->getImage();
 
         $thumbs = $lsystem->createThumbs($generations);
 
