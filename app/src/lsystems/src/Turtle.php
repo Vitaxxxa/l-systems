@@ -1,65 +1,64 @@
 <?php
+
 namespace Lsystems\Src;
 
 class Turtle
 {
-    protected $currentX = 0;
-    protected $currentY = 0;
-    protected $currentAngle = -90;
-    protected $step = 1;
-    protected $pen = true;
-    protected $board;
-    protected $stack =[];
+    protected $currentX;
+    protected $currentY;
+    protected $currentAngle;
+    protected $step;
+    protected $stack;
+    protected $graphic;
 
-    function __construct(GraphicInterface $board)
+    function __construct(GraphicInterface $graphic)
     {
-        $this->board = $board;
+        $this->currentX     = 0;
+        $this->currentY     = 0;
+        $this->currentAngle = 0;
+        $this->step         = 1;
+        $this->stack        = [];
+        $this->graphic      = $graphic;
     }
+
     public function getGraphic()
     {
-        return $this->board;
+        return $this->graphic;
     }
 
-    protected function getNewPosition($argument) 
+    public function getImage()
     {
-        $newX = $this->currentX;
-        $newY = $this->currentY;
-        $deg = $this->currentAngle;
-        if ( 0 === $deg % 360 ) {
+        return $this->graphic->getImage();
+    }
+
+    protected function getNewCoordinates($argument) 
+    {
+        $newX  = $this->currentX;
+        $newY  = $this->currentY;
+        $angel = $this->currentAngle;
+
+        if ( 0 === $angel % 360 ) {
             $newX += $argument;
-        } else if ( 90 === $deg % 360 ) {
+        }else if ( 90 === $angel % 360 ) {
             $newY += $argument;
-        } else if ( 180 === $deg % 360 ) {
+        }else if ( 180 === $angel % 360 ) {
             $newX -= $argument;
-        } else if ( 270 === $deg % 360 ) {
+        }else if ( 270 === $angel % 360 ) {
             $newY -= $argument;
-        } else {
-            $newX = $this->currentX + cos(deg2rad($deg)) * $argument;
-            $newY = $this->currentY + sin(deg2rad($deg)) * $argument;
+        }else {
+            $newX = $this->currentX + cos(deg2rad($angel)) * $argument;
+            $newY = $this->currentY + sin(deg2rad($angel)) * $argument;
         }
 
-        return array(
+        return [
             'x' => $newX,
             'y' => $newY,
-        );
+        ];
     }
 
-    protected function changeAngle($angleChange)
+    protected function changeAngle($angel)
     {
-        $this->currentAngle += $angleChange;
-        //while ( $this->currentAngle < 0) {
-        //    $this->currentAngle += 360;
-        //}
-    }
-
-    public function penUp()
-    {
-        $this->pen = false;
-    }
-
-    public function penDown()
-    {
-        $this->pen = true;
+        $this->currentAngle += $angel;
     }
 
     public function moveForward($step=0)
@@ -67,16 +66,15 @@ class Turtle
         if ($step <= 0)
             $step = $this->step;
 
-        $newPosition = $this->getNewPosition($step);
+        $newCoordinates = $this->getNewCoordinates($step);
 
-        if ($this->pen === true){
-            $temp = $this->board->drawLine( $this->currentX, $this->currentY, $newPosition['x'], $newPosition['y']);
-        }
+        $newX = $newCoordinates['x'];
+        $newY = $newCoordinates['y'];
 
-        $this->currentX = $newPosition['x'];
-        $this->currentY = $newPosition['y'];
-
-        return $temp;
+        $this->graphic->drawLine($this->currentX, $this->currentY, $newX, $newY);
+        
+        $this->currentX = $newX;
+        $this->currentY = $newY;
     }
 
     public function moveBackward($step)
@@ -96,25 +94,23 @@ class Turtle
 
     public function savePoint()
     {
-        array_push($this->stack, [
-            'x'     => $this->currentX,
-            'y'     => $this->currentY,
-            'angel' => $this->currentAngle
-        ]);
+        $stack = $this->stack;
+        $array = [];
+
+        $array['x']     = $this->currentX;
+        $array['y']     = $this->currentY;
+        $array['angel'] = $this->currentAngle;
+
+        array_push($stack, $array);
+        $this->stack = $stack;
     }
 
     public function restorePoint()
     {
         $array = array_pop($this->stack);
 
-        $this->currentX = $array['x'];
-        $this->currentY = $array['y'];
+        $this->currentX     = $array['x'];
+        $this->currentY     = $array['y'];
         $this->currentAngle = $array['angel'];
     }
-
-    public function getImage()
-    {
-        return $this->board->getImage();
-    }
-
 }

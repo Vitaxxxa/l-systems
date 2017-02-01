@@ -3,16 +3,17 @@ namespace Lsystems\Src;
 
 class SvgGraphic implements GraphicInterface
 {
+    protected $svgId;
     protected $width;
     protected $height;
     protected $line;
     protected $image;
-    protected $svgId;
+
     function __construct()
     {
-        $this->svgId = "svg-image";
-        $this->width = "100%";
-        $this->height = "100%";
+        $this->svgId         = "svg-image";
+        $this->width         = "100%";
+        $this->height        = "100%";
         $this->line['color'] = 'black';
         $this->line['width'] = 1;
     }
@@ -45,7 +46,6 @@ class SvgGraphic implements GraphicInterface
         $image  = $this->svgOpenTag();
         $image .= $this->image;
         $image .= $this->svgCloseTag();
-
         $this->clearImage();
 
         return $image;
@@ -83,7 +83,6 @@ class SvgGraphic implements GraphicInterface
         $line .= " y2='$y2'";
         $line .= " style='stroke:$lineColor; stroke-width:$lineWidthpx;'";
         $line .= " />";
-
 
         $this->image .= $line;
     }

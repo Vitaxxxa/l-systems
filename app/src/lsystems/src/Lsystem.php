@@ -6,22 +6,27 @@ class Lsystem
     protected $axiom = "";
     protected $rules = [];
     protected $binds = [];
-    protected $steps = 1;
+    protected $generations = 1;
     protected $turtle= null;
     protected $image = null;
 
     function __construct(Turtle $turtle)
     {
-        $this->turtle = $turtle;
+        $this->axiom       = "";
+        $this->rules       = [];
+        $this->binds       = [];
+        $this->generations = 1;
+        $this->image       = null;
+        $this->turtle      = $turtle;
     }
 
     protected function generatePath()
     {
-        $steps = $this->steps;
+        $generations = $this->generations;
         $rules = $this->rules;
         $string= $this->axiom;
 
-        for ($i=0;$i<$steps;$i++){
+        for ($i=0;$i<$generations;$i++){
             $string = strtr($string, $rules);
         }
 
@@ -78,7 +83,7 @@ class Lsystem
 
             for ($i=0; $i<$g; $i++){
                 $picId = 'svg-img-'.$i;
-                $this->setStep($i);
+                $this->setGenerations($i);
                 $this->turtle->getGraphic()->setSvgId($picId);
                 $this->createImage();
 
@@ -110,7 +115,7 @@ class Lsystem
         }
     }
 
-    public function setStep($step){
-        $this->steps = $step;
+    public function setGenerations($generations){
+        $this->generations = $generations;
     }
 }

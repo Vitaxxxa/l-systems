@@ -36,7 +36,7 @@ class IndexController
         $lsystem = new Lsystem($trtl);
 
         $lsystem->setAxiom($axiom);
-        $lsystem->setStep($generations);
+        $lsystem->setGenerations($generations);
         $lsystem->addRules($rules);
         $lsystem->setBind('[','savePoint','');
         $lsystem->setBind(']','restorePoint','');
