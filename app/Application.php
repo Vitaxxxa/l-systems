@@ -45,9 +45,9 @@ class Application extends Silex\Application
 
         $this['translator'] = $this->share($this->extend('translator', function ($translator, $app) {
             $translator->addLoader('yaml', new \Symfony\Component\Translation\Loader\YamlFileLoader());
-            $translator->addResource('yaml', __DIR__.'/Resources/locales/en.yml', 'en');
-            $translator->addResource('yaml', __DIR__.'/Resources/locales/ru.yml', 'ru');
-            $translator->addResource('yaml', __DIR__.'/Resources/locales/ua.yml', 'ua');
+            $translator->addResource('yaml', __DIR__.'/resources/locales/en.yml', 'en');
+            $translator->addResource('yaml', __DIR__.'/resources/locales/ru.yml', 'ru');
+            $translator->addResource('yaml', __DIR__.'/resources/locales/ua.yml', 'ua');
 
 
             return $translator;
@@ -57,9 +57,10 @@ class Application extends Silex\Application
     public function bootstrapTwig()
     {
         $this->register(new \Silex\Provider\TwigServiceProvider(), array(
-            'twig.path' => __DIR__ . '/Resources/views'
+            'twig.path' => __DIR__ . '/resources/views'
         ));
 
+        /*
         $this['twig'] = $this->share($this->extend('twig', function($twig, $this) {
             $app = $this; # save application context in variable
 
@@ -69,5 +70,6 @@ class Application extends Silex\Application
 
             return $twig;
         }));
+        */
     }
 }
