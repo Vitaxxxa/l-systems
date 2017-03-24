@@ -1,4 +1,4 @@
-h1 L-system
+L-system
 ===========
-h2 Generator based on PHP 7.0 and SVG
+Generator based on PHP 7.0 and SVG
 -------------------------------------
