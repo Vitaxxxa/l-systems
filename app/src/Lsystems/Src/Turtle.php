@@ -16,7 +16,7 @@ class Turtle
     {
         $this->currentX     = 0;
         $this->currentY     = 0;
-        $this->currentAngle = 0;
+        $this->currentAngle = -90;
         $this->step         = 1;
         $this->moves        = 0;
         $this->stack        = [];
@@ -57,7 +57,7 @@ class Turtle
         $this->step         = 1;
         $this->moves        = 0;
         $this->stack        = [];
-        $this->currentAngle = 0;
+        $this->currentAngle = -90;
     }
 
     protected function getNewCoordinates($argument)

@@ -65,13 +65,13 @@
 			                  		<div class="row">
 			                    		<div class="input-field col s12">
 			                      			<p class="range-field" style="padding: 0px;">
-			                        			<input type="range" id="num-generations" min="0" max="15" value="12" />
+			                        			<input type="range" id="num-generations" min="0" max="15" value="4" />
 			                      			</p>
 				                    	</div>
 				                  	</div>
 				                  	<div class="row">
 				                    	<div class="input-field col s12">
-				                      		<input id="axiom" type="text" class="validate" value="F+X">
+				                      		<input id="axiom" type="text" class="validate" value="F">
 				                      		<label for="axiom">{{'axiom'|trans}}</label>
 				                    	</div>
 				                  	</div>
@@ -83,7 +83,7 @@
 				                          			<label for="key">{{'key'|trans}}</label>
 				                        		</div>
 				                        		<div class="input-field col s9">
-				                          			<input type="text" class="validate value" value="X++F+F+X">
+				                          			<input type="text" class="validate value" value="FF-[-F+F+F]+[+F-F-F]">
 				                          			<label for="value">{{'value'|trans}}</label>
 				                        		</div>
 				                      		</div>
@@ -133,7 +133,7 @@
 			                        		</select>
 			                    		</div>
 			                    		<div class="input-field col s4">
-			                      			<input id="param" type="text" class="validate" value="90">
+			                      			<input id="param" type="text" class="validate" value="22">
 			                      			<label for="param">{{'param'|trans}}</label>
 			                    		</div>
 			                  		</div>
@@ -151,7 +151,7 @@
 			                        		</select>
 			                    		</div>
 			                    		<div class="input-field col s4">
-			                      			<input id="param" type="text" class="validate" value="90">
+			                      			<input id="param" type="text" class="validate" value="22">
 			                      			<label for="param">{{'param'|trans}}</label>
 			                    		</div>
 			                    		<div class="input-field col s12">
@@ -176,10 +176,10 @@
 		        <div class="row">
 		          	<div class="col s12 content">
 		          		<div class="white  card-panel" id="dashboard">
-		          			Время выполнения: <span class="total-time"></span><br/>
-		          			Время генерации картинки: <span class="php-time"></span><br/>
-		          			Количество поколений: <span class="genarations"></span><br/>
-		          			Количество шагов черепахи: <span class="moves"></span>
+		          			{{'run-time'|trans}}: <span class="total-time"></span><br/>
+		          			{{'run-time-pic'|trans}}: <span class="php-time"></span><br/>
+		          			{{'run-time-gen'|trans}}: <span class="genarations"></span><br/>
+		          			{{'run-time-steps'|trans}}: <span class="moves"></span>
 		          		</div>
 		            	<div class="white  card-panel center-align" id="final-system">&nbsp;</div>
 		          	</div>
@@ -193,7 +193,7 @@
           	<div class="footer-copyright">
             	<div class="container center">
             		Keep calm and do since
-            		© 2017 vitaxxxa@ex.ua
+            		© 2017
             	</div>
           	</div>
         </footer>
@@ -215,7 +215,7 @@
     	<div id="help-modal" class="modal">
     		<div class="modal-content">
       			<h4>{{'help'|trans}}</h4>
-      			<p>{{'helpText'|trans}}</p>
+      			<p>{{'helpText'|trans|raw}}</p>
     		</div>
     		<div class="modal-footer">
       			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
@@ -224,7 +224,7 @@
   		<div id="about-modal" class="modal">
     		<div class="modal-content">
       			<h4>{{'about'|trans}}</h4>
-      			<p>{{'aboutText'|trans}}</p>
+      			<p>{{'aboutText'|trans|raw}}</p>
     		</div>
     		<div class="modal-footer">
       			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
@@ -233,7 +233,7 @@
   		<div id="examples-modal" class="modal">
     		<div class="modal-content">
       			<h4>{{'examples'|trans}}</h4>
-      			<p>{{'examplesText'|trans}}</p>
+      			<p>{{'examplesText'|trans|raw}}</p>
     		</div>
     		<div class="modal-footer">
       			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>

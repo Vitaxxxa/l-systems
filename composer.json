@@ -5,7 +5,6 @@
     "twig/twig": "*",
     "igorw/config-service-provider": "^1.2",
     "marcojanssen/silex-routing-service-provider": "^1.5",
-    "doctrine/dbal": "^2.5",
     "sorien/silex-pimple-dumper": "^2.0",
     "symfony/translation": "^3.1",
     "symfony/config": "^3.1",

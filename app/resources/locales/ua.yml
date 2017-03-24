@@ -14,3 +14,10 @@ addRule: Додати правило
 help: Допомога
 about: Про проект
 examples: Приклади
+run-time: Час виконання
+run-time-pic: Час генерування зображення
+run-time-gen: Кількість поколінь
+run-time-steps: Кількість кроків черепахи
+helpText:
+aboutText:
+examplesText:
