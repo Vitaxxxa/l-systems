@@ -7,5 +7,5 @@ L-system
 * **Silex** - был использован для роутинга, и мульти.
 * **Materialize.css** - был использован для создания интерфейса.
 
-Описание основных класов:
-    dir /app/src/Lsystems/Src/**Lsystem.php** - text
+**Описание основных класов:**
+> /app/src/Lsystems/Src/**Lsystem.php** - text
