@@ -112,8 +112,6 @@
 					                          	<option value="moveForward" selected>{{'moveForward'|trans}}</option>
 					                          	<option value="moveRight">{{'moveRight'|trans}}</option>
 					                          	<option value="moveLeft">{{'moveLeft'|trans}}</option>
-					                          	<option value="savePoint">{{'savePoint'|trans}}</option>
-			                          			<option value="restorePoint">{{'restorePoint'|trans}}</option>
 			                        		</select>
 			                    		</div>
 			                    		<div class="input-field col s4">
@@ -132,8 +130,6 @@
 			                          			<option value="moveForward" >{{'moveForward'|trans}}</option>
 			                          			<option value="moveRight" selected>{{'moveRight'|trans}}</option>
 			                          			<option value="moveLeft">{{'moveLeft'|trans}}</option>
-			                          			<option value="savePoint">{{'savePoint'|trans}}</option>
-			                          			<option value="restorePoint">{{'restorePoint'|trans}}</option>
 			                        		</select>
 			                    		</div>
 			                    		<div class="input-field col s4">
@@ -152,8 +148,6 @@
 			                          			<option value="moveForward" >{{'moveForward'|trans}}</option>
 			                          			<option value="moveRight" >{{'moveRight'|trans}}</option>
 			                          			<option value="moveLeft" selected>{{'moveLeft'|trans}}</option>
-			                          			<option value="savePoint">{{'savePoint'|trans}}</option>
-			                          			<option value="restorePoint">{{'restorePoint'|trans}}</option>
 			                        		</select>
 			                    		</div>
 			                    		<div class="input-field col s4">
@@ -181,6 +175,12 @@
 		    <div class="col s9" style="padding: 0px; margin: 0px;">
 		        <div class="row">
 		          	<div class="col s12 content">
+		          		<div class="white  card-panel" id="dashboard">
+		          			Время выполнения: <span class="total-time"></span><br/>
+		          			Время генерации картинки: <span class="php-time"></span><br/>
+		          			Количество поколений: <span class="genarations"></span><br/>
+		          			Количество шагов черепахи: <span class="moves"></span>
+		          		</div>
 		            	<div class="white  card-panel center-align" id="final-system">&nbsp;</div>
 		          	</div>
 		        </div>
@@ -246,7 +246,7 @@
             	<div class="card-content white-text pic">
             	</div>
             	<div class="card-action info grey lighten-3">
-              		<a href="#" class='save-pic'>SAVE</a>
+              		<a href="#" class='save-pic'>SAVE</a> <span class="thumb-moves"></span>
             	</div>
           	</div>
   		</div>

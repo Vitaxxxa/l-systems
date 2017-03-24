@@ -10,6 +10,7 @@ class Turtle
     protected $step;
     protected $stack;
     protected $graphic;
+    protected $moves;
 
     function __construct(GraphicInterface $graphic)
     {
@@ -17,6 +18,7 @@ class Turtle
         $this->currentY     = 0;
         $this->currentAngle = 0;
         $this->step         = 1;
+        $this->moves        = 0;
         $this->stack        = [];
         $this->graphic      = $graphic;
     }
@@ -31,7 +33,34 @@ class Turtle
         return $this->graphic->getImage();
     }
 
-    protected function getNewCoordinates($argument) 
+    public function getImageId()
+    {
+        return $this->graphic->getImageId();
+    }
+
+    public function getMoves()
+    {
+        return $this->moves;
+    }
+
+    public function newImage($id = 'img-svg')
+    {
+
+        $this->graphic->setImageId($id);
+        $this->reset();
+    }
+
+    public function reset()
+    {
+        $this->currentX     = 0;
+        $this->currentY     = 0;
+        $this->step         = 1;
+        $this->moves        = 0;
+        $this->stack        = [];
+        $this->currentAngle = 0;
+    }
+
+    protected function getNewCoordinates($argument)
     {
         $newX  = $this->currentX;
         $newY  = $this->currentY;
@@ -64,15 +93,18 @@ class Turtle
     public function moveForward($step=0)
     {
         if ($step <= 0)
-            $step = $this->step;
+            $step  = $this->step;
 
         $newCoordinates = $this->getNewCoordinates($step);
 
-        $newX = $newCoordinates['x'];
-        $newY = $newCoordinates['y'];
+        $currentX = $this->currentX;
+        $currentY = $this->currentY;
+        $newX     = $newCoordinates['x'];
+        $newY     = $newCoordinates['y'];
 
-        $this->graphic->drawLine($this->currentX, $this->currentY, $newX, $newY);
-        
+        $this->graphic->drawLine($currentX, $currentY, $newX, $newY);
+        $this->moves++;
+
         $this->currentX = $newX;
         $this->currentY = $newY;
     }
@@ -92,7 +124,7 @@ class Turtle
         $this->changeAngle(-$angle);
     }
 
-    public function savePoint()
+    public function savePosition()
     {
         $stack = $this->stack;
         $array = [];
@@ -105,7 +137,7 @@ class Turtle
         $this->stack = $stack;
     }
 
-    public function restorePoint()
+    public function restorePosition()
     {
         $array = array_pop($this->stack);
 

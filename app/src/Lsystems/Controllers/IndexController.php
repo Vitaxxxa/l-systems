@@ -7,15 +7,9 @@ use Lsystems\Src\SvgGraphic;
 use Lsystems\Src\Turtle;
 use Lsystems\Src\Lsystem;
 
-class IndexController 
+class IndexController
 {
-    /**
-     * List of articles
-     *
-     * @param Request $request
-     * @param \Application $app
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
+
     public function indexAction(Request $request, \Application $app)
     {
         return $app->render('index.html.twig');
@@ -28,31 +22,19 @@ class IndexController
         $rules       = $_POST['rule'];
         $binds       = $_POST['binds'];
 
-        $svg     = new SvgGraphic();
-        $picId = 'svg-img-'.$generations;
-        $svg->setSvgId($picId);
-        
-        $trtl    = new Turtle($svg);
-        $lsystem = new Lsystem($trtl);
+        $lsystem = new Lsystem();
 
         $lsystem->setAxiom($axiom);
-        $lsystem->setGenerations($generations);
         $lsystem->addRules($rules);
-        $lsystem->setBind('[','savePoint','');
-        $lsystem->setBind(']','restorePoint','');
         $lsystem->setBinds($binds);
+        $lsystem->setBind('[', 'savePosition', '');
+        $lsystem->setBind(']', 'restorePosition', '');
 
-        $lsystem->createImage($picId);
-        
-        $pic = $lsystem->getImage();
-
+        $image  = $lsystem->createImage($generations);
         $thumbs = $lsystem->createThumbs($generations);
 
         return json_encode(array(
-            'pic' => array(
-                'image' => $pic,
-                'id'    => $picId
-                ),
+            'pic' => $image,
             'thumbs' => $thumbs
         ));
     }

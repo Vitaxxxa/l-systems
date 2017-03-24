@@ -5,8 +5,8 @@ function setHeiHeight() {
 }
 
 function resize(id){
-  var obj = $('#'+id)[0];
-  var bb=obj.getBBox();
+    var obj = $('#'+id)[0];
+    var bb=obj.getBBox();
 	var bbx=bb.x-5
 	var bby=bb.y-5
 	var bbw=bb.width+10
@@ -28,10 +28,10 @@ $(document).ready(function(){
 $('#createSystem').on('click', function(event){
     var startS = new Date().getSeconds();
     var startM = new Date().getMilliseconds();
-	event.preventDefault();
+	  event.preventDefault();
 
   	var axiom 	 = $('#axiom').val();
-  	var gens 	 = $('#num-generations').val();
+  	var gens 	   = $('#num-generations').val();
   	var rules 	 = {};
   	var binds 	 = {};
   	var loadIcon = $('.preloader-wrapper').clone().removeClass('hide');
@@ -63,12 +63,21 @@ $('#createSystem').on('click', function(event){
       	function(data){
             data = JSON.parse(data);
             $('#thumbs').empty();
-        	$('#final-system').empty();
-        	$(data.pic.image).appendTo('#final-system');
-        	resize(data.pic.id);
+            $('#final-system').empty();
 
-            for (var i = 0; i < data.thumbs.length; i++) {
-                var object = data.thumbs[i];
+            var mainImage       = data.pic.image;
+            var mainId          = data.pic.id;
+            var mainMoves       = data.pic.moves;
+            var mainTime        = data.pic.time;
+            var mainGenerations = data.pic.generations;
+            var thumbs          = data.thumbs;
+
+            $(mainImage).appendTo('#final-system');
+        	  resize(mainId);
+
+            for (var i = 0; i < thumbs.length; i++) {
+              console.log(i);
+                var object = thumbs[i];
 
                 var clone = $('#tmpl-card').clone();
                 clone.find('.pic').html(object.image);
@@ -83,15 +92,23 @@ $('#createSystem').on('click', function(event){
                 var src = "data:image/svg+xml;base64,\n"+b64;
                 var img = $("<img class='thumb-pic' src='data:image/svg+xml;base64,\n"+b64+"' width='95%'/>");
 
-                clone.find('.pic').html(img)
+                clone.find('.pic').html(img);
+                clone.find('.thumb-moves').html(object.moves);
                 clone.find('.save-pic').attr('href',src);
             }
-
+            
             var elapsedS = new Date().getSeconds() - startS;
             var elapsedM = new Date().getMilliseconds() - startM;
-            Materialize.toast(elapsedS+'.'+elapsedM+' s', 5000, 'rounded')
+
+            $('#dashboard').find('.total-time').text(elapsedS+'.'+elapsedM);
+            $('#dashboard').find('.php-time').text(mainTime);
+            $('#dashboard').find('.moves').text(mainMoves);
+            $('#dashboard').find('.genarations').text(mainGenerations);
+
+            Materialize.toast('Done!', 5000, 'rounded');
       	}
   	);
+
 });
 
 $('#add-new-rule').on('click', function(event){

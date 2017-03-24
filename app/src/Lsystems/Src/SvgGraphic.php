@@ -18,9 +18,14 @@ class SvgGraphic implements GraphicInterface
         $this->line['width'] = 1;
     }
 
-    public function setSvgId($id)
+    public function setImageId($id)
     {
         $this->svgId = $id;
+    }
+
+    public function getImageId()
+    {
+        return $this->svgId;
     }
 
     public function setBoardSize($x=400,$y=400)
@@ -62,7 +67,7 @@ class SvgGraphic implements GraphicInterface
         $svgOpenTag .= " width='$width'";
         $svgOpenTag .= " height='$height'";
         $svgOpenTag .= " version='1.1' xmlns='http://www.w3.org/2000/svg'>";
-    
+
         return $svgOpenTag;
     }
 
@@ -81,7 +86,7 @@ class SvgGraphic implements GraphicInterface
         $line .= " y1='$y1'";
         $line .= " x2='$x2'";
         $line .= " y2='$y2'";
-        $line .= " style='stroke:$lineColor; stroke-width:$lineWidthpx;'";
+        $line .= " style='stroke:".$lineColor."; stroke-width:".$lineWidth."px;'";
         $line .= " />";
 
         $this->image .= $line;
