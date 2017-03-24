@@ -9,5 +9,5 @@ L-system
 
 **Описание основных классов:**
 * /app/src/Lsystems/Src/**Lsystem.php** - Основной класс алгоритма L-систем
-* /app/src/Lsystems/Src/**Turtle.php** - Класс черепахи, звисимость от интерфейса **GraphicInterface.php**
-* /app/src/Lsystems/Src/**SvgGraphic.php** - Класс реализует интерфейс **GraphicInterface.php**
+* /app/src/Lsystems/Src/**Turtle.php** - Класс черепахи, звисимость от интерфейса `GraphicInterface.php`
+* /app/src/Lsystems/Src/**SvgGraphic.php** - Класс реализует интерфейс `GraphicInterface.php`
