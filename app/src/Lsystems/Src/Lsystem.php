@@ -9,9 +9,9 @@ class Lsystem
 
     function __construct()
     {
-        $this->axiom       = "";
-        $this->rules       = [];
-        $this->binds       = [];
+        $this->axiom  = "";
+        $this->rules  = [];
+        $this->binds  = [];
     }
 
     public function setBind($key,$do,$param)
@@ -46,7 +46,7 @@ class Lsystem
         $rules       = $this->rules;
         $string      = $this->axiom;
 
-        for ($i=0;$i<$generations;$i++){
+        for ($i=0; $i < $generations; $i++){
             $string = strtr($string, $rules);
         }
 
@@ -85,26 +85,28 @@ class Lsystem
         $image   = $turtle->getImage();
         $imageId = $turtle->getImageId();
         $moves   = $turtle->getMoves();
+
         unset($turtle);
 
-        $time = microtime(true) - $startTime;
+        $time = round(microtime(true) - $startTime, 3);
 
         return [
             'image'       => $image,
             'id'          => $imageId,
             'moves'       => $moves,
             'time'        => $time,
-            'generations' => $generations
+            'generations' => $generations,
+            'source'      => $path
         ];
     }
 
     public function createThumbs($generations)
     {
 
-        if ($generations > 1){
+        if ($generations >= 1){
             $thumbs = [];
 
-            for ($i=0; $i<$generations; $i++){
+            for ($i=0; $i < $generations; $i++){
                 $thumbs[$i]    = $this->createImage($i);
             }
 

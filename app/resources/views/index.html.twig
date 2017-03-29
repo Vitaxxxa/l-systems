@@ -12,9 +12,7 @@
   	<body class="red lighten-5">
 	  	<nav class="red accent-1 row main-nav">
 	    	<div class="nav-wrapper col s3 logo-div">
-		      	<a href="#">
-		      		<img src="../images/logo.png" class="logo-img">
-		      	</a>
+		      	<img src="../images/logo.png" class="logo-img">
 	    	</div>
 	    	<div class="nav-wrapper col s9 ">
 	    		<ul class="nav-mobile" >
@@ -28,12 +26,6 @@
 		        		<a href="#help-modal">
 		        			<i class="fa fa-question-circle" aria-hidden="true"></i>
 		        			<span class="hide-on-small-only">{{'help'|trans}}</span>
-		        		</a>
-		        	</li>
-		        	<li>
-		        		<a href="#about-modal">
-		        			<i class="fa fa-info-circle" aria-hidden="true"></i>
-		        			<span class="hide-on-small-only">{{'about'|trans}}</span>
 		        		</a>
 		        	</li>
 		        	<li>
@@ -58,7 +50,7 @@
 		      		<ul class="collapsible" data-collapsible="accordion">
 		        		<li>
 		          			<div class="collapsible-header grey lighten-3 active">
-		          				<i class="material-icons">filter_drama</i>{{'l-system'|trans}}
+		          				<i class="material-icons">equalizer</i>{{'l-system'|trans}}
 		          			</div>
 		          			<div class="collapsible-body grey lighten-5">
 			                	<form>
@@ -97,7 +89,7 @@
 		        		</li>
 			            <li>
 			              	<div class="collapsible-header grey lighten-3">
-			              		<i class="material-icons">place</i>{{'turtle'|trans}}
+			              		<i class="material-icons">swap_calls</i>{{'turtle'|trans}}
 			              	</div>
 			              	<div class="collapsible-body grey lighten-5">
 			                	<form>
@@ -161,32 +153,34 @@
 			                	</form>
 			             	 </div>
 			            </li>
-			            <li>
-			              	<div class="collapsible-header grey lighten-3">
-			              		<i class="material-icons">whatshot</i>{{'svg'|trans}}
-			              	</div>
-			              	<div class="collapsible-body grey lighten-5">
-			              		<p>Lorem ipsum dolor sit amet.</p>
-			              	</div>
-			            </li>
 		      		</ul>
 		    	</div>
 	    	</div>
 		    <div class="col s9" style="padding: 0px; margin: 0px;">
 		        <div class="row">
 		          	<div class="col s12 content">
-		          		<div class="white  card-panel" id="dashboard">
-		          			{{'run-time'|trans}}: <span class="total-time"></span><br/>
-		          			{{'run-time-pic'|trans}}: <span class="php-time"></span><br/>
-		          			{{'run-time-gen'|trans}}: <span class="genarations"></span><br/>
-		          			{{'run-time-steps'|trans}}: <span class="moves"></span>
+		          		<div class="row white card-panel" id="dashboard">
+		          			<div class="col s4">
+			          			{{'run-time'|trans}}: <span class="total-time"></span><br/>
+			          			{{'run-time-pic'|trans}}: <span class="php-time"></span><br/>
+			          			{{'run-time-gen'|trans}}: <span class="genarations"></span><br/>
+			          			{{'run-time-steps'|trans}}: <span class="moves"></span>
+		          			</div>
+		          			<div class="col s8">
+			          			<blockquote><p class="source-main"></p></blockquote>
+		          			</div>
 		          		</div>
 		            	<div class="white  card-panel center-align" id="final-system">&nbsp;</div>
 		          	</div>
 		        </div>
 		    </div>
    		</div>
-
+   		<div class="row">
+   			<div class="col s12 center-align">
+   				<h3>{{'generations-list-label'|trans}}</h3>
+   				<hr>
+   			</div>
+   		</div>
    		<div class="row"><div class="col s12" id="thumbs"> </div></div>
 
    		<footer class="page-footer" style="margin-top:0px;padding-top: 0px;">
@@ -241,19 +235,38 @@
   		</div>
 
   		<div id="tmpl-card" class="col s4" style="display: none;">
-  			<div class="card pink white">
-  				<span class="generation-span"></span>
+  			<div class="card pink white z-depth-4">
             	<div class="card-content white-text pic">
             	</div>
-            	<div class="card-action info grey lighten-3">
-              		<a href="#" class='save-pic'>SAVE</a> <span class="thumb-moves"></span>
+            	<div class="card-action info grey lighten-3 thumbs-icons">
+              		<a  href="#" class='save-pic btn-floating waves-effect waves-light red tooltipped'
+              			data-position="bottom" 
+	              		data-tooltip="I am tooltip">
+              			<i class="material-icons">visibility</i>
+              		</a> 
+              		
+              		<div>
+	              		<i  class="material-icons tooltipped" 
+	              			data-position="bottom" 
+	              			data-tooltip="{{'run-time-gen'|trans}}">trending_up</i> 
+	              			<span class="thumb-gen "></span>
+	              		<i 	class="material-icons tooltipped"
+	              		 	data-position="bottom" 
+	              			data-tooltip="{{'run-time-steps'|trans}}">label_outline</i> 
+	              			<span class="thumb-moves"></span>
+	              		<i  class="material-icons tooltipped" 
+	              			data-position="bottom" 
+	              			data-tooltip="{{'run-time-pic'|trans}}">av_timer</i> 
+	              			<span class="thumb-time"></span>
+              		</div>
             	</div>
           	</div>
   		</div>
 
   		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.js"></script>
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+  		
   		<script type="text/javascript" src="/assets/js/app.js"></script>
   	</body>
 </html>
-

@@ -13,7 +13,7 @@ nav ul a{
 .logo-img{
 	max-height: 100%;
 	max-width:100%;
-	padding-top: 5px;
+	vertical-align: middle;
 }
 
 nav i{
@@ -32,4 +32,45 @@ nav i{
 	font-size: 25px;
 	border-bottom: 1px solid #ddd;
 	border-left: 1px solid #ddd;
+}
+
+.thumbs-icons div i{
+	color:#757575;
+	font-size:1.5em;
+	vertical-align: middle;
+	margin-left: 15px;
+	cursor: pointer;
+}
+
+.thumbs-icons span{
+	vertical-align: middle;
+	font-size:1em;
+	color:#757575;
+}
+
+.thumbs-icons a{
+	vertical-align: middle;
+	margin-right: 30px;
+}
+
+.thumbs-icons div{
+	float:right;
+	text-align: right;
+	height: 40px;
+	padding-top: 8px;
+}
+
+.source-main{
+	overflow: overlay;
+	height: 90px;
+	font-size: 10px;
+	margin: 0;
+}
+
+#dashboard blockquote {
+	margin: 0;
+}
+
+nav .nav-wrapper i {
+	margin-right: 10px;
 }

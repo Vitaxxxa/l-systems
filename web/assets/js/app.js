@@ -5,14 +5,36 @@ function setHeiHeight() {
 }
 
 function resize(id){
-    var obj = $('#'+id)[0];
-    var bb=obj.getBBox();
+  var obj = $('#'+id)[0];
+  var bb=obj.getBBox();
 	var bbx=bb.x-5
 	var bby=bb.y-5
 	var bbw=bb.width+10
 	var bbh=bb.height+10
 	var vb=[bbx,bby,bbw,bbh]
 	obj.setAttribute('viewBox', vb.join(' ') )
+}
+
+function clone(object, index){
+  var clone = $('#tmpl-card').clone();
+
+  clone.find('.pic').html(object.image);
+  clone.css('display','block');
+  clone.attr('style','');
+  clone.appendTo('#thumbs');
+
+  resize(object.id);
+  var imge = clone.find('.pic').html();
+  var b64 = btoa(imge);
+  var src = "data:image/svg+xml;base64,\n"+b64;
+  var img = $("<img class='thumb-pic' src='data:image/svg+xml;base64,\n"+b64+"' width='95%'/>");
+
+  clone.find('.pic').html(img);
+  clone.find('.thumb-gen').html(index);
+  clone.find('.thumb-moves').html(object.moves);
+  clone.find('.thumb-time').html(object.time);
+  clone.find('.save-pic').attr('href',src);
+  clone.find('.save-pic').attr('target','blank');
 }
 
 $(document).ready(function(){
@@ -22,13 +44,14 @@ $(document).ready(function(){
     $('.collapsible').collapsible();
     $('.modal').modal();
     $(window).resize( setHeiHeight );
-    //$('#createSystem').click();
+    $('#createSystem').click();
+
 });
 
 $('#createSystem').on('click', function(event){
-    var startS = new Date().getSeconds();
-    var startM = new Date().getMilliseconds();
 	  event.preventDefault();
+
+    var startTime = new Date().getSeconds() + '.' + new Date().getMilliseconds();
 
   	var axiom 	 = $('#axiom').val();
   	var gens 	   = $('#num-generations').val();
@@ -43,7 +66,7 @@ $('#createSystem').on('click', function(event){
 	    var key    = $(this).find('.key').val();
 	    var value  = $(this).find('.value').val();
 	    rules[key] = value;
-	});
+	  });
 
   	$('.bind-inputs').each(function(){
     	var key    = $(this).find('#bind-key').val();
@@ -62,6 +85,7 @@ $('#createSystem').on('click', function(event){
       	},
       	function(data){
             data = JSON.parse(data);
+
             $('#thumbs').empty();
             $('#final-system').empty();
 
@@ -70,42 +94,26 @@ $('#createSystem').on('click', function(event){
             var mainMoves       = data.pic.moves;
             var mainTime        = data.pic.time;
             var mainGenerations = data.pic.generations;
+            var mainSource      = data.pic.source;
             var thumbs          = data.thumbs;
 
             $(mainImage).appendTo('#final-system');
         	  resize(mainId);
 
             for (var i = 0; i < thumbs.length; i++) {
-              console.log(i);
-                var object = thumbs[i];
-
-                var clone = $('#tmpl-card').clone();
-                clone.find('.pic').html(object.image);
-                clone.find('.generation-span').html(i);
-                clone.css('display','block');
-                clone.attr('style','');
-                clone.appendTo('#thumbs');
-                resize(object.id);
-                var imge = clone.find('.pic').html();
-
-                var b64 = btoa(imge);
-                var src = "data:image/svg+xml;base64,\n"+b64;
-                var img = $("<img class='thumb-pic' src='data:image/svg+xml;base64,\n"+b64+"' width='95%'/>");
-
-                clone.find('.pic').html(img);
-                clone.find('.thumb-moves').html(object.moves);
-                clone.find('.save-pic').attr('href',src);
+                clone(thumbs[i], i);
             }
             
-            var elapsedS = new Date().getSeconds() - startS;
-            var elapsedM = new Date().getMilliseconds() - startM;
+            var finishTime = (new Date().getSeconds() + '.' + new Date().getMilliseconds()) - startTime;
 
-            $('#dashboard').find('.total-time').text(elapsedS+'.'+elapsedM);
+            $('#dashboard').find('.total-time').text(Number((finishTime).toFixed(3)));
             $('#dashboard').find('.php-time').text(mainTime);
             $('#dashboard').find('.moves').text(mainMoves);
             $('#dashboard').find('.genarations').text(mainGenerations);
+            $('#dashboard').find('.source-main').text(mainSource);
 
-            Materialize.toast('Done!', 5000, 'rounded');
+            Materialize.toast('Ok', 5000, 'rounded');
+            $('.tooltipped').tooltip({delay: 50}); 
       	}
   	);
 
