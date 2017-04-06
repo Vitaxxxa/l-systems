@@ -33,13 +33,13 @@ class IndexController
         $image  = $lsystem->createImage($generations);
         $thumbs = $lsystem->createThumbs($generations);
 
-        return json_encode(array(
-            'pic' => $image,
-            'thumbs' => $thumbs
-        ));
+        return json_encode([
+            'pic'      => $image,
+            'thumbs'   => $thumbs,
+        ]);
     }
 
     public function homeAction(Request $request, \Application $app){
-        return $app->redirect("/en/");
+        return $app->redirect("/ru/");
     }
 }

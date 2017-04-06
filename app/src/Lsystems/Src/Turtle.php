@@ -45,7 +45,6 @@ class Turtle
 
     public function newImage($id = 'img-svg')
     {
-
         $this->graphic->setImageId($id);
         $this->reset();
     }

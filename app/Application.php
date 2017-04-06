@@ -16,10 +16,6 @@ class Application extends Silex\Application
 
     }
 
-    /**
-     * @param array $values
-     * @throws HttpRuntimeException
-     */
     public function bootstrapAppConfig(array $values)
     {
         if (empty($values['config'])) {
@@ -59,17 +55,5 @@ class Application extends Silex\Application
         $this->register(new \Silex\Provider\TwigServiceProvider(), array(
             'twig.path' => __DIR__ . '/resources/views'
         ));
-
-        /*
-        $this['twig'] = $this->share($this->extend('twig', function($twig, $this) {
-            $app = $this; # save application context in variable
-
-            $twig->addFunction(new Twig_SimpleFunction('asset', function($asset) use($app) {
-                return $this['request']->getBaseUrl() . '/assets/' . $asset;
-            }));
-
-            return $twig;
-        }));
-        */
     }
 }

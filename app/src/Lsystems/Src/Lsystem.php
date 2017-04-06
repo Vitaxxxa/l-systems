@@ -106,12 +106,11 @@ class Lsystem
         if ($generations >= 1){
             $thumbs = [];
 
-            for ($i=0; $i < $generations; $i++){
+            for ($i=0; $i <= $generations; $i++){
                 $thumbs[$i]    = $this->createImage($i);
             }
 
             return $thumbs;
         }
     }
-
 }
