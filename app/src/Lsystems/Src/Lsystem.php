@@ -9,34 +9,37 @@ class Lsystem
 
     function __construct()
     {
-        $this->axiom  = "";
-        $this->rules  = [];
-        $this->binds  = [];
+        $this->axiom = "";
+        $this->rules = [];
+        $this->binds = [];
     }
 
-    public function setBind($key,$do,$param)
+    public function setBind($key, $do, $param)
     {
-        $this->binds[$key]= ['do'=>$do,'param'=>$param];
+        $this->binds[$key] = ['do' => $do, 'param' => $param];
     }
 
     public function setBinds($array)
     {
         foreach ($array as $key => $bind){
-            $this->setBind($key,$bind['value'],$bind['param']);
+            $this->setBind($key, $bind['value'], $bind['param']);
         }
     }
 
-    public function setAxiom($axiom){
+    public function setAxiom($axiom)
+    {
         $this->axiom = $axiom;
     }
 
-    public function addRule($key,$value){
-        $this->rules[$key]=$value;
+    public function addRule($key, $rule)
+    {
+        $this->rules[$key]=$rule;
     }
 
-    public function addRules($array){
+    public function addRules($array)
+    {
         foreach ($array as $key => $rule){
-            $this->addRule($key,$rule);
+            $this->addRule($key, $rule);
         }
     }
 
@@ -46,22 +49,24 @@ class Lsystem
         $rules       = $this->rules;
         $string      = $this->axiom;
 
-        for ($i=0; $i < $generations; $i++){
+        for ($i = 0; $i < $generations; $i++){
             $string = strtr($string, $rules);
         }
 
         return $string;
     }
 
-    public function createImage($generations){
-        $startTime  = microtime(true);
+    public function createImage($generation)
+    {
+        $startTime = microtime(true);
+        $graphic   = new SvgGraphic();
+        $turtle    = new Turtle($graphic);
+        $path      = $this->generatePath($generation);
+        $binds     = $this->binds;
 
-        $turtle     = new Turtle( new SvgGraphic() );
-        $path       = $this->generatePath($generations);
-        $binds      = $this->binds;
-        $turtle->newImage('svg-img'.$generations);
+        $turtle->newImage('svg-img' . $generation);
 
-        for ($i=0; $i < strlen($path); $i++){
+        for ($i = 0; $i < strlen($path); $i++){
             foreach ($binds as $key => $bind){
 
                 $do    = $bind['do'];
@@ -102,12 +107,11 @@ class Lsystem
 
     public function createThumbs($generations)
     {
-
         if ($generations >= 1){
             $thumbs = [];
 
-            for ($i=0; $i <= $generations; $i++){
-                $thumbs[$i]    = $this->createImage($i);
+            for ($i = 0; $i <= $generations; $i++){
+                $thumbs[$i] = $this->createImage($i);
             }
 
             return $thumbs;

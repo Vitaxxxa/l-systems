@@ -40,6 +40,6 @@ class IndexController
     }
 
     public function homeAction(Request $request, \Application $app){
-        return $app->redirect("/ru/");
+        return $app->redirect("/en/");
     }
 }

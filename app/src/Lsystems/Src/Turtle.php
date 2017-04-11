@@ -49,7 +49,7 @@ class Turtle
         $this->reset();
     }
 
-    public function reset()
+    protected function reset()
     {
         $this->currentX     = 0;
         $this->currentY     = 0;
@@ -89,10 +89,10 @@ class Turtle
         $this->currentAngle += $angel;
     }
 
-    public function moveForward($step=0)
+    public function moveForward($step = 0)
     {
         if ($step <= 0)
-            $step  = $this->step;
+            $step = $this->step;
 
         $newCoordinates = $this->getNewCoordinates($step);
 
@@ -103,7 +103,6 @@ class Turtle
 
         $this->graphic->drawLine($currentX, $currentY, $newX, $newY);
         $this->moves++;
-
         $this->currentX = $newX;
         $this->currentY = $newY;
     }
@@ -133,6 +132,7 @@ class Turtle
         $array['angel'] = $this->currentAngle;
 
         array_push($stack, $array);
+
         $this->stack = $stack;
     }
 

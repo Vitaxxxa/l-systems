@@ -28,14 +28,6 @@ class SvgGraphic implements GraphicInterface
         return $this->svgId;
     }
 
-    public function setBoardSize($x=400,$y=400)
-    {
-        if ($x > 0 || $y > 0){
-            $this->width = $x;
-            $this->height = $y;
-        }
-    }
-
     public function setLineColor($color)
     {
         $this->line['color'] = $color;
@@ -51,6 +43,7 @@ class SvgGraphic implements GraphicInterface
         $image  = $this->svgOpenTag();
         $image .= $this->image;
         $image .= $this->svgCloseTag();
+
         $this->clearImage();
 
         return $image;
